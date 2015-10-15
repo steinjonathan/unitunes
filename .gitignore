@@ -1,9 +1,73 @@
-node_modules
+# Ignore hidden folders
+# This takes care of .tmp, .sass-cache, and many others
+.*/
+
+# OSX
+._*
+.AppleDouble
+.DS_Store
+.localized
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon
+
+# Windows
+Desktop.ini
+ehthumbs.db
+Thumbs.db
+
+# Linux
+*~
+
+# Vim
+.*.sw[a-z]
+.netrwhist
+*.un~
+Session.vim
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+*.sublime-projectcompletions
+
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
+
+# NetBeans
+nbproject/*
+
+# Always-ignore files and folders
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swn
+*.swo
+*.swp
+*.lock
+._*
+*~
+
+# Ignore packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Packages
+**/node_modules/*
+**/bower_components/*
+
+
 public
-.tmp
-.sass-cache
-.idea
-client/bower_components
 dist
 /server/config/local.env.js
 npm-debug.log
