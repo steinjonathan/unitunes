@@ -1,5 +1,9 @@
 # unitunes
 
+Trabalho da disciplina de Arquitetura de Software, projeto e implementação de um sistema de gerenciamento de mídia.
+
+--
+
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0-rc8.
 
 ## Getting Started
