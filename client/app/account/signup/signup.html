@@ -17,6 +17,19 @@
           <p class="help-block" ng-show="form.name.$error.required && submitted">
             A name is required
           </p>
+        
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                            'has-error': form.lastname.$invalid && submitted }">
+          <label>Last name</label>
+
+          <input type="text" name="lastname" class="form-control" ng-model="user.lastname"
+                 required/>
+          <p class="help-block" ng-show="form.lastname.$error.required && submitted">
+            A last name is required
+          </p>
+
         </div>
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
