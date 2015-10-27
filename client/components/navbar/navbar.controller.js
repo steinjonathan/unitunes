@@ -5,6 +5,10 @@ angular.module('unitunesApp')
     $scope.menu = [{
       'title': 'Home',
       'state': 'main'
+    },
+    {
+      'title': 'Mídias',
+      'state': 'midias'
     }];
 
     $scope.isCollapsed = true;
