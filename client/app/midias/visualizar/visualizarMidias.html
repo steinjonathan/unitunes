@@ -1,0 +1,12 @@
+<navbar></navbar>
+
+<div class="container">
+  <p>Midias cadastradas
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="midia in midias">
+        <strong>{{midia.nome}}</strong><br>
+        <!-- <span class="text-muted">{{user.email}}</span> -->
+        <a ng-click="obter(midia)">Visualizar</a>
+    </li>
+  </ul>
+</div>
