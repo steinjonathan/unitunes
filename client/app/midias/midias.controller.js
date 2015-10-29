@@ -7,6 +7,11 @@ angular.module('unitunesApp')
         url: '/midias',
         templateUrl: 'app/midias/visualizar/VisualizarMidias.html',
         controller: 'VisualizarMidiaCtrl'
+      })
+      .state('adicionarmidias', {
+        url: '/addMidia',
+        templateUrl: 'app/midias/adicionar/adicionarMidias.html',
+        controller: 'AdicionarMidiaCtrl'
       });
   })
   .run(function($rootScope) {
