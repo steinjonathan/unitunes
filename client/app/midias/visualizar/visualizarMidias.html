@@ -6,9 +6,16 @@
   </a>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="midia in midias">
-        <strong>{{midia.nome}}</strong><br>
-        <!-- <span class="text-muted">{{user.email}}</span> -->
-        <a ng-click="obter(midia)">Visualizar</a>
+      <table style="width:100%">
+        <tr>
+          <td>
+            <strong>{{midia.nome}}</strong> 
+          </td>
+          <td align="right">
+            <p ><a ng-click="obter(midia)" ui-sref="editarmidias">Editar</a> | <a ng-click="excluir(midia)">Excluir</a></p>
+          </td>
+        </tr>
+      </table>
     </li>
   </ul>
 </div>

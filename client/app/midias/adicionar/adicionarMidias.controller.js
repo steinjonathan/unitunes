@@ -29,4 +29,8 @@ angular.module('unitunesApp')
       }
     };
 
+    this.deleteThing = function(thing) {
+      $http.delete('/api/things/' + thing._id);
+    };
+
   });

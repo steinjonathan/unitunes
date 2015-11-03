@@ -13,6 +13,14 @@ angular.module('unitunesApp')
         templateUrl: 'app/midias/adicionar/adicionarMidias.html',
         controller: 'AdicionarMidiaCtrl'
       });
+      .state('editarmidias', {
+        url: '/edtMidia',
+        templateUrl: 'app/midias/adicionar/adicionarMidias.html',
+        controller: function($state, Midia) {
+          $scope.midia = Midia;
+          
+        }
+      });
   })
   .run(function($rootScope) {
     
