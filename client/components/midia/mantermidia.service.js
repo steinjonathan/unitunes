@@ -38,6 +38,19 @@ angular.module('unitunesApp')
             this.logout();
             return safeCb(callback)(err);
           }.bind(this)).$promise;
+      },
+
+      updateMidia: function(midia, callback) {
+        return Midia.save(midia,
+          function(data) {
+            $cookies.put('token', data.token);
+            currentMidia = Midia.get();
+            return safeCb(callback)(null, Midia);
+          },
+          function(err) {
+            this.logout();
+            return safeCb(callback)(err);
+          }.bind(this)).$promise;
       }
 
     };

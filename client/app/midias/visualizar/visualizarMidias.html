@@ -12,7 +12,7 @@
             <strong>{{midia.nome}}</strong> 
           </td>
           <td align="right">
-            <p ><a ng-click="obter(midia)" ui-sref="editarmidias">Editar</a> | <a ng-click="excluir(midia)">Excluir</a></p>
+            <p ><a ui-sref="editarmidias({id: midia._id})">Editar</a> | <a ng-click="excluir(midia)">Excluir</a></p>
           </td>
         </tr>
       </table>

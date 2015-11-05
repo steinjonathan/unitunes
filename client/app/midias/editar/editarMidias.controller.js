@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('unitunesApp')
-  .controller('AdicionarMidiaCtrl', function($scope, ManterMidia, $state) {
-    $scope.midia = {};
-    $scope.errors = {};
+  .controller('EditarMidiaCtrl', function($state, ManterMidia, Midia, $scope) {
+          
+    var id = $state.params.id;
+        
+    $scope.midia = Midia.get({id:id});
 
     $scope.persistir = function(form, id) {
       $scope.submitted = true;
 
       if (form.$valid) {
-        ManterMidia.createMidia({
-          nome: $scope.midia.nome
-        })
+        ManterMidia.updateMidia(
+          $scope.midia
+        )
         .then(function() {
           // Account created, redirect to home
           $state.go('midias');

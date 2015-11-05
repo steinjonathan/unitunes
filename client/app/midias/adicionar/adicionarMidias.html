@@ -6,7 +6,7 @@
       <h1>Sign up</h1>
     </div>
     <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="adicionar(form)" novalidate>
+      <form class="form" name="form" ng-submit="persistir(form, {id: midia._id})" novalidate>
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
