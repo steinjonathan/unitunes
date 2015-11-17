@@ -22,13 +22,14 @@ var MidiaSchema = new Schema({
   autores: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   descricao: String,
   imagem: { data: Buffer, contentType: String },
-  preco: Number
+  preco: Number,
+  ativo: Boolean
 });
 
-MidiaSchema.plugin(filePlugin, {
-    name: "arquivo",
-    upload_to: make_upload_to_model(uploads, 'midias'),
-    relative_to: uploads_base
-});
+// MidiaSchema.plugin(filePlugin, {
+//     name: "arquivo",
+//     upload_to: make_upload_to_model(uploads, 'midias'),
+//     relative_to: uploads_base
+// });
 
 module.exports = mongoose.model('Midia', MidiaSchema);

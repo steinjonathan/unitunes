@@ -1,5 +1,25 @@
 <div class="container">
   <div class="page-header">
-    <h1>Mídias</h1>
+    <h1>
+      Mídias
+
+      <a ui-sref="newMidia" class="btn btn-primary pull-right">
+        Cadastrar Mídia
+      </a>
+    </h1>
   </div>
+
+  <table class="table table-bordered table-striped table-hovered">
+    <tr ng-repeat="midia in midias">
+      <td>{{midia.nome}}</td>
+      <td>{{midia.tipo}}</td>
+      <td>{{midia.categoria}}</td>
+      <td>{{midia.autores}}</td>
+      <td>{{midia.preco}}</td>
+      <td>
+        <a class="btn btn-default" ui-sref="editMidia({id:midia._id})">Editar</a>
+        <a class="btn btn-danger"  ng-click="deleteMidia(midia)">Deletar</a>
+      </td>
+    </tr>
+  </table>
 </div>
