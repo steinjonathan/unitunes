@@ -2,17 +2,24 @@
 
 angular.module('unitunesApp')
   .controller('NavbarCtrl', function ($scope, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'state': 'main'
-    },
-    {
-      'title': 'Mídias',
-      'state': 'midias'
-    }];
+    $scope.menu = [];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $scope.menu.push({
+      'title': 'Home',
+      'state': 'main',
+      'roles': ['user']
+    },{
+      'title': 'Mídias',
+      'state': 'midias',
+      'roles': ['user']
+    },{
+      'title': 'Adminstração',
+      'state': 'admin',
+      'roles': ['admin']
+    });
   });

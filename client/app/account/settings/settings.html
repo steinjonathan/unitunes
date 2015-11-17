@@ -1,15 +1,13 @@
-<navbar></navbar>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Change Password</h1>
+      <h1>Alterar Senha</h1>
     </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
 
         <div class="form-group">
-          <label>Current Password</label>
+          <label>Senha Atual</label>
 
           <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
                  mongoose-error/>
@@ -19,7 +17,7 @@
         </div>
 
         <div class="form-group">
-          <label>New Password</label>
+          <label>Nova Senha</label>
 
           <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
                  ng-minlength="3"
@@ -31,7 +29,7 @@
         </div>
 
         <div class="form-group">
-          <label>Confirm New Password</label>
+          <label>Confirmação de Nova Senha</label>
 
           <input type="password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword"
                  match="user.newPassword"
@@ -46,7 +44,7 @@
 
         <p class="help-block"> {{ message }} </p>
 
-        <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+        <button class="btn btn-lg btn-primary" type="submit">Salvar Mudanças</button>
       </form>
     </div>
   </div>

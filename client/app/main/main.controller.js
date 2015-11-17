@@ -3,9 +3,10 @@
 
 function MainController($scope, $http) {
   var self = this;
+  /*
   this.awesomeThings = [];
 
-  $http.get('/api/things').then(function(response) {
+  $http.get('x/api/things').then(function(response) {
     self.awesomeThings = response.data;
   });
 
@@ -20,6 +21,7 @@ function MainController($scope, $http) {
   this.deleteThing = function(thing) {
     $http.delete('/api/things/' + thing._id);
   };
+  */
 }
 
 angular.module('unitunesApp')
