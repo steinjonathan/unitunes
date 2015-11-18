@@ -24,7 +24,14 @@
         <td>{{midia.nome}}</td>
         <td>{{midia.tipo}}</td>
         <td>{{midia.categoria}}</td>
-        <td>R$ {{midia.preco}}</td>
+        <td>
+          <span ng-if="midia.gratuita == false || midia.gratuita == null">
+            R$ {{midia.preco}}
+          </span>
+          <span ng-if="midia.gratuita">
+            FREE
+          </span>
+        </td>
         <td class="text-nowrap">
           <a class="btn btn-default btn-xs" ui-sref="editMidia({id:midia._id})">Editar</a>
           <a class="btn btn-danger btn-xs"  ng-click="deleteMidia(midia)">Deletar</a>

@@ -12,7 +12,9 @@ var MidiaSchema = new Schema({
   imagem: String,
   arquivo: String,
   preco: Number,
-  ativo: Boolean
+  gratuita: { type: Boolean, default: false },
+  ativo: { type: Boolean, default: false },
+  criadoEm: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Midia', MidiaSchema);
