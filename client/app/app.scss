@@ -19,6 +19,19 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
   white-space: nowrap;
 }
 
+.img-ratio {
+  overflow: hidden;
+  display: block;
+  position:relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #eee;
+  background-size: contain;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';

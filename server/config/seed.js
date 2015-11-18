@@ -39,7 +39,7 @@ let populateMidias = function() {
             categoria: 'Hello darkness, my old friend...',
             autores: [autor._id],
             descricao: '...I\'ve come to talk with you again.',
-            imagem: '/assets/fake_uploads/livro_thumb.jpg',
+            imagem: '/assets/fake_uploads/book_thumb.jpg',
             arquivo: '/assets/fake_uploads/book.pdf',
             preco: 3,
             ativo: true
