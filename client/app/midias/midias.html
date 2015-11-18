@@ -10,16 +10,26 @@
   </div>
 
   <table class="table table-bordered table-striped table-hovered">
-    <tr ng-repeat="midia in midias">
-      <td>{{midia.nome}}</td>
-      <td>{{midia.tipo}}</td>
-      <td>{{midia.categoria}}</td>
-      <td>{{midia.autores}}</td>
-      <td>{{midia.preco}}</td>
-      <td>
-        <a class="btn btn-default" ui-sref="editMidia({id:midia._id})">Editar</a>
-        <a class="btn btn-danger"  ng-click="deleteMidia(midia)">Deletar</a>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Categoria</th>
+        <th>Preços</th>
+        <th width="1%">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="midia in midias">
+        <td>{{midia.nome}}</td>
+        <td>{{midia.tipo}}</td>
+        <td>{{midia.categoria}}</td>
+        <td>R$ {{midia.preco}}</td>
+        <td class="text-nowrap">
+          <a class="btn btn-default btn-xs" ui-sref="editMidia({id:midia._id})">Editar</a>
+          <a class="btn btn-danger btn-xs"  ng-click="deleteMidia(midia)">Deletar</a>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

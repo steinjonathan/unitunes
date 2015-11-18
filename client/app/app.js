@@ -4,6 +4,7 @@ angular.module('unitunesApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngFileUpload',
   'ui.router',
   'ui.bootstrap',
   'validation.match'
