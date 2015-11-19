@@ -108,6 +108,22 @@ exports.changePassword = function(req, res, next) {
     });
 };
 
+exports.creditMoney = function(req, res, next) {
+  var userId = req.user._id;
+  var saldoAntigo = Number(req.body.saldo);
+  var valorACreditar = Number(req.body.valorACreditar);
+
+  User.findByIdAsync(userId)
+    .then(function(user) {
+      user.saldo = saldoAntigo + valorACreditar;
+      return user.saveAsync()
+        .then(function() {
+          res.status(204).end();
+        })
+        .catch(validationError(res));
+    });
+};
+
 /**
  * Get my info
  */

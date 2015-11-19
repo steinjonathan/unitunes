@@ -95,6 +95,18 @@ angular.module('unitunesApp')
         }).$promise;
       },
 
+
+      creditMoney: function(oldCredit, valueToAdd, callback) {
+        return User.creditMoney({ id: currentUser._id }, {
+          saldo: oldCredit,
+          valorACreditar: valueToAdd
+        }, function() {
+          return safeCb(callback)(null);
+        }, function(err) {
+          return safeCb(callback)(err);
+        }).$promise;
+      },
+
       /**
        * Gets all available info on a user
        *   (synchronous|asynchronous)

@@ -13,7 +13,8 @@ describe('User API:', function() {
       user = new User({
         name: 'Fake User',
         email: 'test@example.com',
-        password: 'password'
+        password: 'password',
+        credit: '0'
       });
 
       return user.saveAsync();

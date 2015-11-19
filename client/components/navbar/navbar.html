@@ -22,6 +22,7 @@
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Olá {{ getCurrentUser().name }}</p> </li>
         <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="credit">Credit</a></li>
         <li ng-show="isLoggedIn()"><a ui-sref="logout">Sair</a></li>
       </ul>
     </div>
