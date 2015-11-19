@@ -18,5 +18,10 @@ angular.module('unitunesApp')
         url: '/midias/:id/edit',
         templateUrl: 'app/midias/midias.edit.html',
         controller: 'MidiaEditCtrl'
+      })
+      .state('buyMidia', {
+        url: '/midias/:id/buyMidia',
+        templateUrl: 'app/midias/midias.buy.html',
+        controller: 'MidiaBuyCtrl'
       });
   });
