@@ -6,16 +6,16 @@
 </div>
 
 <div class="form-group">
-  <label for="title" class="col-sm-2 control-label">Tipo</label>
+  <label for="title" class="col-sm-2 control-label">Categoria</label>
   <div class="col-sm-10">
-    <input type="text" ng-model="midia.tipo" class="form-control" required/>
+    <input type="text" ng-model="midia.categoria" class="form-control" required/>
   </div>
 </div>
 
 <div class="form-group">
-  <label for="title" class="col-sm-2 control-label">Categoria</label>
+  <label for="title" class="col-sm-2 control-label">Tipo</label>
   <div class="col-sm-10">
-    <select ng-model="midia.categoria" class="form-control" required>
+    <select ng-model="midia.tipo" class="form-control" required>
       <option ng-repeat="option in categorias">{{option}}</option>
     </select>
   </div>
