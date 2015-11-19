@@ -12,6 +12,12 @@ angular.module('unitunesApp')
           controller:'password'
         }
       },
+      creditMoney: {
+        method: 'PUT',
+        params: {
+          controller: 'credit'
+        }
+      },
       get: {
         method: 'GET',
         params: {
