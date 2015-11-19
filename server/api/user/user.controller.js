@@ -155,6 +155,27 @@ exports.addMidia = function(req, res, next) {
     });
 };
 
+exports.favoriteMidia = function(req, res, next) {
+  var userId = req.user._id;
+  var midia = req.body.midia;
+
+  User.findByIdAsync(userId)
+    .then(function(user) {
+      var index = user.midiasFavorites.indexOf(midia._id);
+
+      if (index > -1) {
+        user.midiasFavorites = user.midiasFavorites.splice(index, 1);
+      } else {
+        user.midiasFavorites.push(midia._id);
+      }
+      return user.saveAsync()
+        .then(function() {
+          res.status(204).end();
+        })
+        .catch(validationError(res));
+    });
+};
+
 /**
  * Get my info
  */

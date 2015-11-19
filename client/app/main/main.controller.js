@@ -6,6 +6,8 @@ function MainController($scope, $http, Midia, Auth, User) {
     ativo: true
   };
 
+  $scope.getCurrentUser = Auth.getCurrentUser;
+
   $scope.isPlaying = false;
 
   Midia
@@ -37,23 +39,32 @@ function MainController($scope, $http, Midia, Auth, User) {
     $scope.filtros.tipo = tipo;
   };
 
+  $scope.favoritarMidia = function(midia) {
+    User.favoritarMidia({midia: midia}, function() {
+      Auth.updateCurrentUser();
+    });
+  };
+
   $scope.playMidia = function(midia) {
     $scope.isPlaying = true;
     $scope.midiaSelected = midia;
   };
 
   $scope.comprarMidia = function(midia) {
-    if(confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?')) {
+    bootbox.confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?', function(confirmed) {
+      if(!confirmed) return;
+
       var currentUser = Auth.getCurrentUser();
-      if(currentUser.saldo > midia.preco) {
+      if(currentUser.saldo > midia.preco || midia.gratuita) {
         User.addMidia({midia: midia}, function() {
           Auth.updateCurrentUser();
+          bootbox.alert('Compra realizada com sucesso!');
         });
       } else {
-        alert('Saldo insuficiente!');
+        bootbox.alert('Saldo insuficiente!');
         return false;
       }
-    }
+    });
   };
 }
 

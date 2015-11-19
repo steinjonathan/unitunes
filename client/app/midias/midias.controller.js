@@ -5,12 +5,13 @@ angular.module('unitunesApp')
     $scope.midias = Midia.query();
 
     $scope.deleteMidia = function(midia) {
-    if (confirm('Confirma exclusão?')) {
-      midia.$delete(function() {
-        $scope.midias = $scope.midias.filter(function(el) {
-          return el._id !== midia._id;
+      bootbox.confirm('Confirma exclusão?', (result) => {
+        if(!result) return false;
+        midia.$delete(function() {
+          $scope.midias = $scope.midias.filter(function(el) {
+            return el._id !== midia._id;
+          });
         });
       });
-    }
-  };
+    };
   });

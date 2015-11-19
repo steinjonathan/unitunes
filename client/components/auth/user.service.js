@@ -27,6 +27,14 @@ angular.module('unitunesApp')
           midia: '@_midia'
         }
       },
+      favoritarMidia: {
+        method: 'PUT',
+        params: {
+          id:'me',
+          controller: 'favoriteMidia',
+          midia: '@_midia'
+        }
+      },
       buyMidia: {
         method: 'PUT',
         params: {

@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{midia.imagem}})"></div>
+        <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{midia.imagem || 'https://placehold.it/1280x720'}})"></div>
 
         <div class="caption">
           <h5>{{midia.nome}}</h5>
@@ -65,7 +65,12 @@
           </small>
           <p>
             <a ng-click="playMidia(midia)" class="btn btn-default" role="button">Visualizar</a>
-            <a ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
+            <a ng-click="favoritarMidia(midia)" class="btn btn-warning">
+              <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) !== -1" class="glyphicon glyphicon-star"></i>
+              <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) === -1" class="glyphicon glyphicon-star-empty"></i>
+            </a>
+            <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1"
+              ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
           </p>
         </div>
       </div>

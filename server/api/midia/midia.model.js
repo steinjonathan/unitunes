@@ -11,7 +11,7 @@ var MidiaSchema = new Schema({
   descricao: String,
   imagem: String,
   arquivo: String,
-  preco: Number,
+  preco: { type: Number, default: 0 },
   gratuita: { type: Boolean, default: false },
   ativo: { type: Boolean, default: false },
   criadoEm: { type: Date, default: Date.now }

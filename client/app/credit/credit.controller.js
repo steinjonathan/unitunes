@@ -9,7 +9,8 @@ angular.module('unitunesApp')
 
     $scope.creditMoney = function(form) {
 
-      if (confirm('Creditar R$' + $scope.valor + ' com pagamento por ' + $scope.formaPgto + '. \n\nConfirma operação?')) {
+      bootbox.confirm('Creditar R$' + $scope.valor + ' com pagamento por ' + $scope.formaPgto + '. \n\nConfirma operação?', function(result) {
+        if(!result) return;
         // TODO: MELHORAR
         console.log('test', User.$creditMoney);
         User.get({ id: $scope.getCurrentUser()._id }, function(user) {
@@ -19,11 +20,9 @@ angular.module('unitunesApp')
           });
         })
 
-        // Account created, redirect to home
-        $state.go('main');
-      
-      } else {
-
-      }
+        bootbox.alert("Seu crédito foi inserido!", function() {
+          $state.go('main');
+        });
+      });
     };
   });
