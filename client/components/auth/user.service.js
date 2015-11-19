@@ -19,6 +19,13 @@ angular.module('unitunesApp')
           controller: 'credit'
         }
       },
+      buyMidia: {
+        method: 'PUT',
+        params: {
+          id:'me',
+          controller: 'buyMidia'
+        }
+      },
       get: {
         method: 'GET',
         params: {
