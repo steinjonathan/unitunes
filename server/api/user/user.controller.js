@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import Midia from '../midia/midia.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -26,6 +27,15 @@ function respondWith(res, statusCode) {
   };
 }
 
+function mapMedias(user) {
+  user.midias = user.midias.map(function(m) {
+    return Midia.findById(m, function(midia) {
+      return midia;
+    });
+  });
+  return user;
+}
+
 /**
  * Get list of users
  * restriction: 'admin'
@@ -33,22 +43,12 @@ function respondWith(res, statusCode) {
 exports.index = function(req, res) {
   User.findAsync({}, '-salt -hashedPassword')
     .then(function(users) {
+      users = users.map(function(u) {
+        return mapMedias(u);
+      });
       res.status(200).json(users);
     })
     .catch(handleError(res));
-};
-
-exports.updateSaldo = function(req, res) {
-  var userId = req.user._id;
-  User.findById(userId, function (err, user) {
-    if (err) { return handleError(res, err); }
-    if(!user) { return res.send(404); }
-    user.saldo = user.saldo + req.saldo;
-    user.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.status(204).end();
-    });
-  });
 };
 
 /**
@@ -74,8 +74,10 @@ exports.create = function(req, res, next) {
 exports.show = function(req, res, next) {
   var userId = req.params.id;
 
-  User.findByIdAsync(userId, '-salt -hashedPassword')
+  User
+    .findByIdAsync(userId, '-salt -hashedPassword')
     .then(function(user) {
+      user = mapMedias(user);
       if (!user) {
         return res.status(404).end();
       }
@@ -136,6 +138,23 @@ exports.creditMoney = function(req, res, next) {
     });
 };
 
+exports.addMidia = function(req, res, next) {
+  var userId = req.user._id;
+  var midia = req.body.midia;
+
+  User.findByIdAsync(userId)
+    .then(function(user) {
+      if(user.midias.indexOf(midia._id) === -1)
+        user.midias.push(midia._id);
+      user.saldo = user.saldo - midia.preco;
+      return user.saveAsync()
+        .then(function() {
+          res.status(204).end();
+        })
+        .catch(validationError(res));
+    });
+};
+
 /**
  * Get my info
  */
@@ -143,7 +162,8 @@ exports.me = function(req, res, next) {
   var userId = req.user._id;
 
   User.findOneAsync({ _id: userId }, '-salt -hashedPassword')
-    .then(function(user) { // don't ever give out the password or salt
+    .then(function(user) {
+      user = mapMedias(user);
       if (!user) {
         return res.status(401).end();
       }

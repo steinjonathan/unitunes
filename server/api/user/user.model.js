@@ -20,6 +20,7 @@ var UserSchema = new Schema({
     type: Number,
     default: 0
   },
+  midias: [String], //STUPID MONGO CANT CIRCULAR REFERENCE
   provider: String,
   salt: String,
   facebook: {},

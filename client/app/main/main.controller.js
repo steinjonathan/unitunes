@@ -1,10 +1,12 @@
 'use strict';
 (function() {
 
-function MainController($scope, $http, Midia) {
+function MainController($scope, $http, Midia, Auth, User) {
   $scope.filtros = {
     ativo: true
   };
+
+  $scope.isPlaying = false;
 
   Midia
     .query(function(midias) {
@@ -14,7 +16,7 @@ function MainController($scope, $http, Midia) {
         }).join(',');
         return m;
       });
-      
+
       $scope.midiasRawData = midias;
       $scope.midias = midias;
       $scope.filtrarByTipo(false);
@@ -33,6 +35,25 @@ function MainController($scope, $http, Midia) {
         return m.tipo === tipo;
       });
     $scope.filtros.tipo = tipo;
+  };
+
+  $scope.playMidia = function(midia) {
+    $scope.isPlaying = true;
+    $scope.midiaSelected = midia;
+  };
+
+  $scope.comprarMidia = function(midia) {
+    if(confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?')) {
+      var currentUser = Auth.getCurrentUser();
+      if(currentUser.saldo > midia.preco) {
+        User.addMidia({midia: midia}, function() {
+          Auth.updateCurrentUser();
+        });
+      } else {
+        alert('Saldo insuficiente!');
+        return false;
+      }
+    }
   };
 }
 
