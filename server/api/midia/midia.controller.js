@@ -14,19 +14,23 @@
 
  // Get list of midias
  exports.index = function(req, res) {
-   Midia.find(function (err, midias) {
+   Midia
+   .find(function (err, midias) {
      if(err) { return handleError(res, err); }
      return res.json(200, midias);
-   });
+   })
+   .populate('autores');
  };
 
  // Get a single midia
  exports.show = function(req, res) {
-   Midia.findById(req.params.id, function (err, midia) {
+   Midia
+   .findById(req.params.id, function (err, midia) {
      if(err) { return handleError(res, err); }
      if(!midia) { return res.send(404); }
      return res.json(midia);
-   });
+   })
+   .populate('autores');
  };
 
  // Creates a new midia in the DB.
