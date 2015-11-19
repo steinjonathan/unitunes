@@ -7,6 +7,7 @@ angular.module('unitunesApp')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
+    $scope.isRole = Auth.isRole;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.menu.push({

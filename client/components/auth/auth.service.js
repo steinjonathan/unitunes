@@ -95,18 +95,6 @@ angular.module('unitunesApp')
         }).$promise;
       },
 
-
-      creditMoney: function(oldCredit, valueToAdd, callback) {
-        return User.creditMoney({ id: currentUser._id }, {
-          saldo: oldCredit,
-          valorACreditar: valueToAdd
-        }, function() {
-          return safeCb(callback)(null);
-        }, function(err) {
-          return safeCb(callback)(err);
-        }).$promise;
-      },
-
       /**
        * Gets all available info on a user
        *   (synchronous|asynchronous)
@@ -128,6 +116,11 @@ angular.module('unitunesApp')
             safeCb(callback)({});
             return {};
           });
+      },
+
+      updateCurrentUser: function() {
+        currentUser = User.get();
+        return currentUser;
       },
 
       /**
@@ -165,6 +158,19 @@ angular.module('unitunesApp')
         return this.getCurrentUser(null)
           .then(function(user) {
             var is = user.role === 'admin';
+            safeCb(callback)(is);
+            return is;
+          });
+      },
+
+      isRole: function(role, callback) {
+        if (arguments.length === 1) {
+          return currentUser.role === role;
+        }
+
+        return this.getCurrentUser(null)
+          .then(function(user) {
+            var is = user.role === role;
             safeCb(callback)(is);
             return is;
           });

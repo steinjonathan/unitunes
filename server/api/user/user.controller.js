@@ -38,6 +38,19 @@ exports.index = function(req, res) {
     .catch(handleError(res));
 };
 
+exports.updateSaldo = function(req, res) {
+  var userId = req.user._id;
+  User.findById(userId, function (err, user) {
+    if (err) { return handleError(res, err); }
+    if(!user) { return res.send(404); }
+    user.saldo = user.saldo + req.saldo;
+    user.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.status(204).end();
+    });
+  });
+};
+
 /**
  * Creates a new user
  */
@@ -61,7 +74,7 @@ exports.create = function(req, res, next) {
 exports.show = function(req, res, next) {
   var userId = req.params.id;
 
-  User.findByIdAsync(userId)
+  User.findByIdAsync(userId, '-salt -hashedPassword')
     .then(function(user) {
       if (!user) {
         return res.status(404).end();
@@ -110,12 +123,11 @@ exports.changePassword = function(req, res, next) {
 
 exports.creditMoney = function(req, res, next) {
   var userId = req.user._id;
-  var saldoAntigo = Number(req.body.saldo);
-  var valorACreditar = Number(req.body.valorACreditar);
+  var valorACreditar = Number(req.body.valor);
 
   User.findByIdAsync(userId)
     .then(function(user) {
-      user.saldo = saldoAntigo + valorACreditar;
+      user.saldo = valorACreditar + user.saldo;
       return user.saveAsync()
         .then(function() {
           res.status(204).end();

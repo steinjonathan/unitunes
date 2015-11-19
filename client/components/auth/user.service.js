@@ -15,6 +15,7 @@ angular.module('unitunesApp')
       creditMoney: {
         method: 'PUT',
         params: {
+          id:'me',
           controller: 'credit'
         }
       },

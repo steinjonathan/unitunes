@@ -6,6 +6,7 @@ angular.module('unitunesApp')
       .state('credit', {
         url: '/credit',
         templateUrl: 'app/credit/credit.html',
-        controller: 'CreditCtrl'
+        controller: 'CreditCtrl',
+        authenticate: true
       });
   })

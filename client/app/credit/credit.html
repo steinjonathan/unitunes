@@ -1,22 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Creditar saldo</h1>
+      <h1>Creditar Saldo</h1>
     </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="creditMoney(form)" novalidate>
 
         <div class="form-group">
-          <label>Saldo</label>
-
-          <input type="money" name="credit" class="form-control" ng-model="user.saldo"
-                 mongoose-error/>
+          <h3><small>Saldo Atual:</small> R$ {{getCurrentUser().saldo || 0}}</h3>
         </div>
 
         <div class="form-group">
           <label>Valor a creditar</label>
 
-          <input type="money" name="valueToAdd" class="form-control" ng-model="user.valorACreditar"
+          <input type="money" class="form-control" ng-model="valor"
                  mongoose-error/>
         </div>
 

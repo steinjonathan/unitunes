@@ -1,21 +1,18 @@
 'use strict';
 
 angular.module('unitunesApp')
-  .controller('CreditCtrl', function($scope, $http, User, Auth) {
+  .controller('CreditCtrl', function($scope, $http, $state, User, Auth) {
   	$scope.errors = {};
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.creditMoney = function(form) {
-      $scope.submitted = true;
-      if (form.$valid) {
-        Auth.creditMoney($scope.user.saldo, $scope.user.valorACreditar)
-          .then(function() {
-            $scope.message = 'Saldo creditado com sucesso.';
-          })
-          .catch(function() {
-            form.password.$setValidity('mongoose', false);
-            $scope.errors.other = 'Erro ao creditar.';
-            $scope.message = '';
-          });
-      }
+      // TODO: MELHORAR
+      console.log('test', User.$creditMoney);
+      User.get({ id: $scope.getCurrentUser()._id }, function(user) {
+        user.valor = $scope.valor;
+        user.$creditMoney({}, function() {
+          Auth.updateCurrentUser();
+        });
+      });
     };
   });
