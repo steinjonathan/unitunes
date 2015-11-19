@@ -7,6 +7,7 @@ angular.module('unitunesApp')
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        authenticate: true
       });
   });

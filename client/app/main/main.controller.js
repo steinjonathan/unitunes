@@ -7,6 +7,7 @@ function MainController($scope, $http, Midia, Auth, User) {
   };
 
   $scope.getCurrentUser = Auth.getCurrentUser;
+  $scope.isRole = Auth.isRole;
 
   $scope.isPlaying = false;
 
@@ -49,6 +50,10 @@ function MainController($scope, $http, Midia, Auth, User) {
     $scope.isPlaying = true;
     $scope.midiaSelected = midia;
   };
+
+  $scope.downloadMidia = function(midia) {
+    return document.execCommand('SaveAs',true,midia.arquivo);
+  }
 
   $scope.comprarMidia = function(midia) {
     bootbox.confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?', function(confirmed) {

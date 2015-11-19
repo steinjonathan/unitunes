@@ -12,7 +12,6 @@ angular.module('unitunesApp')
       bootbox.confirm('Creditar R$' + $scope.valor + ' com pagamento por ' + $scope.formaPgto + '. \n\nConfirma operação?', function(result) {
         if(!result) return;
         // TODO: MELHORAR
-        console.log('test', User.$creditMoney);
         User.get({ id: $scope.getCurrentUser()._id }, function(user) {
           user.valor = $scope.valor;
           user.$creditMoney({}, function() {
