@@ -15,13 +15,29 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
   padding: 0.2em 0;
 }
 
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.img-ratio {
+  overflow: hidden;
+  display: block;
+  position:relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #eee;
+  background-size: contain;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';
 @import 'credit/credit.scss';
 @import 'main/main.scss';
 @import 'midias/midias.scss';
-@import 'to-copy/to-copy.scss';
 @import '../components/footer/footer.scss';
 @import '../components/modal/modal.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';

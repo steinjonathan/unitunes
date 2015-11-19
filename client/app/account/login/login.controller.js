@@ -2,7 +2,10 @@
 
 angular.module('unitunesApp')
   .controller('LoginCtrl', function($scope, Auth, $state) {
-    $scope.user = {};
+    $scope.user = {
+      email: 'test@example.com',
+      password: 'test'
+    };
     $scope.errors = {};
 
     $scope.login = function(form) {

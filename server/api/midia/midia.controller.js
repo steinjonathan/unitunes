@@ -7,96 +7,63 @@
  * DELETE  /api/midias/:id          ->  destroy
  */
 
-'use strict';
+ 'use strict';
 
-var _ = require('lodash');
-var Midia = require('./midia.model');
+ var _ = require('lodash');
+ var Midia = require('./midia.model');
 
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return function(err) {
-    res.status(statusCode).send(err);
-  };
-}
+ // Get list of midias
+ exports.index = function(req, res) {
+   Midia.find(function (err, midias) {
+     if(err) { return handleError(res, err); }
+     return res.json(200, midias);
+   });
+ };
 
-function responseWithResult(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function(entity) {
-    if (entity) {
-      res.status(statusCode).json(entity);
-    }
-  };
-}
+ // Get a single midia
+ exports.show = function(req, res) {
+   Midia.findById(req.params.id, function (err, midia) {
+     if(err) { return handleError(res, err); }
+     if(!midia) { return res.send(404); }
+     return res.json(midia);
+   });
+ };
 
-function handleEntityNotFound(res) {
-  return function(entity) {
-    if (!entity) {
-      res.status(404).end();
-      return null;
-    }
-    return entity;
-  };
-}
+ // Creates a new midia in the DB.
+ exports.create = function(req, res) {
+   Midia.create(req.body, function(err, midia) {
+     if(err) { return handleError(res, err); }
+     return res.json(201, midia);
+   });
+ };
 
-function saveUpdates(updates) {
-  return function(entity) {
-    var updated = _.merge(entity, updates);
-    return updated.saveAsync()
-      .spread(function(updated) {
-        return updated;
-      });
-  };
-}
+ // Updates an existing midia in the DB.
+ exports.update = function(req, res) {
+   if(req.body._id) { delete req.body._id; }
+   Midia.findById(req.params.id, function (err, midia) {
+     if (err) { return handleError(res, err); }
+     if(!midia) { return res.send(404); }
+     var updated = _.merge(midia, req.body);
+     updated.save(function (err) {
+       if (err) { return handleError(res, err); }
+       return res.json(200, midia);
+     });
+   });
+ };
 
-function removeEntity(res) {
-  return function(entity) {
-    if (entity) {
-      return entity.removeAsync()
-        .then(function() {
-          res.status(204).end();
-        });
-    }
-  };
-}
+ // Deletes a midia from the DB.
+ exports.destroy = function(req, res) {
+   Midia.findById(req.params.id, function (err, midia) {
+     if(err) { return handleError(res, err); }
+     if(!midia) { return res.send(404); }
+     midia.remove(function(err) {
+       if(err) { return handleError(res, err); }
+       return res.send(204);
+     });
+   });
+ };
 
-// Gets a list of Midias
-exports.index = function(req, res) {
-  Midia.findAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
-// Gets a single Midia from the DB
-exports.show = function(req, res) {
-  Midia.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
-// Creates a new Midia in the DB
-exports.create = function(req, res) {
-  Midia.createAsync(req.body)
-    .then(responseWithResult(res, 201))
-    .catch(handleError(res));
-};
-
-// Updates an existing Midia in the DB
-exports.update = function(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  Midia.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
-// Deletes a Midia from the DB
-exports.destroy = function(req, res) {
-  Midia.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
-};
+ function handleError(res, err) {
+   console.log(err);
+   return res.send(500, err);
+ }

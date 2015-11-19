@@ -1,27 +1,30 @@
 'use strict';
 (function() {
 
-function MainController($scope, $http) {
-  var self = this;
-  /*
-  this.awesomeThings = [];
+function MainController($scope, $http, Midia) {
+  $scope.filtros = {
+    ativo: true
+  };
 
-  $http.get('x/api/things').then(function(response) {
-    self.awesomeThings = response.data;
-  });
+  Midia
+    .query(function(midias) {
+      $scope.midiasNotFiltered = midias;
+      $scope.midias = midias;
+    });
 
-  this.addThing = function() {
-    if (self.newThing === '') {
+  $scope.filtrarByTipo = function(tipo) {
+    $scope.midias = $scope.midiasNotFiltered;
+    
+    if(tipo === false) {
+      delete $scope.filtros.tipo;
       return;
     }
-    $http.post('/api/things', { name: self.newThing });
-    self.newThing = '';
-  };
 
-  this.deleteThing = function(thing) {
-    $http.delete('/api/things/' + thing._id);
-  };
-  */
+    $scope.midias = $scope.midias.filter(function(m) {
+      return m.tipo === tipo;
+    });
+    $scope.filtros.tipo = tipo;
+  }
 }
 
 angular.module('unitunesApp')

@@ -16,7 +16,7 @@ angular.module('unitunesApp')
     },{
       'title': 'Mídias',
       'state': 'midias',
-      'roles': ['user']
+      'roles': ['admin', 'autor']
     },{
       'title': 'Adminstração',
       'state': 'admin',
