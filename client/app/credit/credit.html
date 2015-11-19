@@ -17,9 +17,17 @@
                  mongoose-error/>
         </div>
 
+        <div class="form-group">
+          <label> Formas de pagamento</label>
+  
+          <select ng-model="formaPgto" class="form-control" required>
+            <option ng-repeat="option in formasPagamento">{{option}}</option>
+          </select>        
+        </div>
+
         <p class="help-block"> {{ message }} </p>
 
-        <button class="btn btn-lg btn-primary" type="submit">Salvar mudanças</button>
+        <button class="btn btn-lg btn-primary" type="submit">Comprar créditos</button>
       </form>
     </div>
   </div>
