@@ -27,3 +27,11 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+.navbar-brand {
+  color: #FFF !important;
+  background-color: #EB6864;
+  &:hover {
+    background-color: darken(#EB6864, 10%) !important;
+  }
+}
