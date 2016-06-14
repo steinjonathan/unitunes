@@ -21,9 +21,9 @@
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Cadastrar-se</a></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
         <li ng-show="isLoggedIn()">
-          <p class="navbar-text">Olá {{ getCurrentUser().name }}</p>
+          <p class="navbar-text">Oi {{ getCurrentUser().name }}</p>
         </li>
-        <li ng-show="isRole('user')" ui-sref-active="active"><a ui-sref="credit">Saldo Atual: <b>R$ {{ getCurrentUser().saldo || 0.00 }}</b></a></li>
+        <li ng-show="isRole('user')" ui-sref-active="active"><a ui-sref="credit">Seu Saldo: <b>R$ {{ getCurrentUser().saldo || 0.00 }}</b></a></li>
         <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="isLoggedIn()"><a ui-sref="logout">Sair</a></li>
       </ul>

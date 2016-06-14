@@ -1,10 +1,10 @@
-@import '../bower_components/bootswatch/journal/_variables.scss';
+@import '../bower_components/bootswatch/paper/_variables.scss';
 $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 @import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
 
-@import '../bower_components/bootswatch/journal/_bootswatch.scss';
+@import '../bower_components/bootswatch/paper/_bootswatch.scss';
 
 /**
  * App-wide Styles
@@ -32,6 +32,14 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
   background-position: center center;
   background-color: #eee;
   background-size: contain;
+}
+
+input {
+  background-color: #fbfbfb !important;
+  transition: all 5.5s;
+  &:focus {
+    background-color: #fff !important;
+  }
 }
 
 // Component styles are injected through grunt

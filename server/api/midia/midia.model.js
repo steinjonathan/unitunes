@@ -7,6 +7,7 @@ var MidiaSchema = new Schema({
   nome: String,
   tipo: String,
   categoria: String,
+  batata: String,
   autores: [{type: Schema.Types.ObjectId, ref: 'User'}],
   descricao: String,
   imagem: String,

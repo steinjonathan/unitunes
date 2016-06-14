@@ -4,6 +4,8 @@ angular.module('unitunesApp')
   .controller('MidiaNewCtrl', function($scope, $state,
     $stateParams, Midia, User, Upload, $timeout) {
   $scope.midia = new Midia();
+  $scope.arquivo = {};
+  console.log(new Midia());
 
   User.get(function(me) {
     $scope.midia.autores = [me._id];
@@ -20,7 +22,10 @@ angular.module('unitunesApp')
 
   $scope.addMidia = function() {
     //TODO: Fazer funcionar o upload de arquivos
+    console.log($scope);
+
     $scope.midia.$save(function() {
+      console.log('midia', $scope.midia);
       $state.go('midias');
     });
   };

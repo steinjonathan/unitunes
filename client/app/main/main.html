@@ -28,7 +28,7 @@
     </h1>
   </div>
   <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="midia in midias | orderBy:'-criadoEm'">
+    <div class="col-sm-12" ng-repeat="midia in midias | orderBy:'-criadoEm'">
       <div class="thumbnail">
 
         <div ng-if="midiaSelected == midia">
@@ -37,36 +37,43 @@
           </div>
         </div>
 
-        <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{midia.imagem || 'https://placehold.it/1280x720'}})"></div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{midia.imagem || 'https://placehold.it/1280x720'}})"></div>
+          </div>
 
-        <div class="caption">
-          <h5>{{midia.nome}}</h5>
-          <small>
-            <p style="min-height: 35px;">{{midia.descricao}}</p>
-            <dl style="-webkit-columns: 2; columns: 2;">
-              <dt>Autor</dt>
-              <dd>{{midia.autores}}</dd>
-              <dt>Categoria</dt>
-              <dd>{{midia.categoria}}</dd>
-              <dt>Criado Em</dt>
-              <dd>{{midia.criadoEm}}</dd>
-              <dt>PREÇO</dt>
-              <dd ng-if="midia.gratuita == false || midia.gratuita == null">R$ {{midia.preco}}</dd>
-              <dd ng-if="midia.gratuita">GRATUÍTO</dd>
-            </dl>
-          </small>
-          <p>
-            <a ng-click="playMidia(midia)" class="btn btn-default" role="button">Visualizar</a>
-            <a ng-click="favoritarMidia(midia)" class="btn btn-warning">
-              <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) !== -1" class="glyphicon glyphicon-star"></i>
-              <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) === -1" class="glyphicon glyphicon-star-empty"></i>
-            </a>
-            <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1"
-              ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
-            <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1"
-              href="{{midia.arquivo}}" download="{{midia.arquivo}}" class="btn btn-primary pull-right">Baixar</a>
-          </p>
+          <div class="col-sm-8">
+            <div class="caption">
+              <h5>{{midia.nome}}</h5>
+              <small>
+                <p style="min-height: 35px;">{{midia.descricao}}</p>
+                <dl style="-webkit-columns: 2; columns: 2;">
+                  <dt>Autor</dt>
+                  <dd>{{midia.autores}}</dd>
+                  <dt>Categoria</dt>
+                  <dd>{{midia.categoria}}</dd>
+                  <dt>Criado Em</dt>
+                  <dd>{{midia.criadoEm}}</dd>
+                  <dt>PREÇO</dt>
+                  <dd ng-if="midia.gratuita == false || midia.gratuita == null">R$ {{midia.preco}}</dd>
+                  <dd ng-if="midia.gratuita">GRATUÍTO</dd>
+                </dl>
+              </small>
+              <p>
+                <a ng-click="playMidia(midia)" class="btn btn-default" role="button">Visualizar</a>
+                <a ng-click="favoritarMidia(midia)" class="btn btn-warning">
+                  <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) !== -1" class="glyphicon glyphicon-star"></i>
+                  <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) === -1" class="glyphicon glyphicon-star-empty"></i>
+                </a>
+                <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1"
+                  ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
+                <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1"
+                  href="{{midia.arquivo}}" download="{{midia.arquivo}}" class="btn btn-primary pull-right">Baixar</a>
+              </p>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
