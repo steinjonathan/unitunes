@@ -2,9 +2,11 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var multer = require('multer'),
 	bodyParser = require('body-parser'),
-	path = require('path');
+	path = require('path'),
+	cors = require('cors');
 
 var app = new express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // view engine setup
@@ -18,6 +20,7 @@ app.get('/', function(req, res){
 app.post('/', multer({ dest: './uploads/'}).single('upl'), function(req,res){
 	console.log(req.body); //form fields
 	console.log(req.file); //form files
+	// console.log(req);
 	res.status(201).send({
     path: req.file.path,
     originalName: req.file.originalname
