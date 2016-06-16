@@ -29,9 +29,10 @@
 }
 
 .navbar-brand {
+  // display: none; // REMOVER
   color: #FFF !important;
   background-color: #EB6864;
-  &:hover {
+  &:hover,&:focus {
     background-color: darken(#EB6864, 10%) !important;
   }
 }
