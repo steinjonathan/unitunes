@@ -25,7 +25,13 @@ var storage = multer.diskStorage({
 		var mime = require('mime');
 		var crypto = require('crypto');
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+			console.log(file.mimetype);
+			console.log(mime.extension(file.mimetype));
+			var extension = mime.extension(file.mimetype);
+			if(file.mimetype === 'audio/mp3') {
+				extension = 'mp3';
+			}
+      cb(null, raw.toString('hex') + Date.now() + '.' + extension);
     });
   }
 });

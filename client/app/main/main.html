@@ -1,4 +1,4 @@
-<div class="container" ng-show="isRole('user')">
+<div class="container">
   <div class="page-header">
     <h1>
       Biblioteca
@@ -68,7 +68,7 @@
                 <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1"
                   ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
                 <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1"
-                  href="{{midia.arquivo}}" download="{{midia.arquivo}}" class="btn btn-primary pull-right">Baixar</a>
+                  target="_self" href="{{filePath(midia.arquivo)}}" class="btn btn-primary pull-right" download="{{midia.arquivo.nome}}">Baixar</a>
               </p>
             </div>
           </div>

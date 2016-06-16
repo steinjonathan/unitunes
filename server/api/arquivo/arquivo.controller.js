@@ -20,6 +20,17 @@
    });
  };
 
+ exports.show = function(req, res) {
+   Arquivo
+   .findById(req.params.id, function (err, arquivo) {
+     if(err) { return handleError(res, err); }
+     if(!arquivo) { return res.send(404); }
+     console.log('asdasdasdasdasDASDASDASdasDASDASD',__dirname,  arquivo);
+     return res.download(__dirname + '/../../../client/assets/images/' + arquivo.path);
+   })
+   .populate('autores');
+ };
+
  function handleError(res, err) {
    console.log(err);
    return res.send(500, err);

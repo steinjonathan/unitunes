@@ -1,7 +1,7 @@
 'use strict';
 (function() {
 
-function MainController($scope, $http, Midia, Auth, User) {
+function MainController($scope, $http, Midia, Auth, Arquivo, User) {
   $scope.filtros = {
     ativo: true
   };
@@ -12,7 +12,6 @@ function MainController($scope, $http, Midia, Auth, User) {
   $scope.isPlaying = false;
 
   $scope.filePath = function(file) {
-    console.log(file);
     return '/assets/images/' + file.path;
   };
 
