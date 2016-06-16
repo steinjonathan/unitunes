@@ -11,6 +11,11 @@ function MainController($scope, $http, Midia, Auth, User) {
 
   $scope.isPlaying = false;
 
+  $scope.filePath = function(file) {
+    console.log(file);
+    return '/assets/images/' + file.path;
+  };
+
   Midia
     .query(function(midias) {
       midias = midias.map(function(m) {

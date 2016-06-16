@@ -12,6 +12,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/users', require('./api/user'));
   app.use('/api/midia', require('./api/midia'));
+  app.use('/api/arquivo', require('./api/arquivo'));
 
   app.use('/auth', require('./auth'));
 

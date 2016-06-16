@@ -2,62 +2,16 @@
 
 angular.module('unitunesApp')
   .controller('MidiaNewCtrl', function($scope, $state,
-    $stateParams, $http, Midia, User, Upload, $timeout) {
+    $stateParams, $http, Midia, Arquivo, User, Upload, $timeout) {
   $scope.midia = new Midia();
   $scope.arquivo = {};
 
   $scope.setFile = function(file) {
     $scope.file = file[0];
-    console.log($scope.file);
+  };
 
-    var formData = new FormData();
-
-    var blobImage = fileService.base64ToBlob($scope.file, 'image/png');
-    formData.append('upl', blobImage, 'imagem' + (i + 1) + '.png');
-
-    $.ajax({
-      url: 'http://localhost:3030',
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      type: 'POST',
-      success: function(response) {
-        deferred.resolve(response);
-        $rootScope.requestInProgress = false;
-      },
-      error: function(error) {
-        deferred.reject(error);
-        $rootScope.requestInProgress = false;
-      }
-    });
-    // $http({
-    //   method: 'POST',
-    //   url: 'http://localhost:3030',
-    //   headers: {
-    //       'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryN2be02OBFRzGvMZs'
-    //   },
-    //   data: {
-    //       upl: $scope.file
-    //   },
-    //   transformRequest: function (data, headersGetter) {
-    //       var formData = new FormData();
-    //       angular.forEach(data, function (value, key) {
-    //           formData.append(key, value);
-    //       });
-    //
-    //       // formData.append('upl', $scope.file);
-    //
-    //       var headers = headersGetter();
-    //       delete headers['Content-Type'];
-    //
-    //       return formData;
-    //   }
-    // }).then(function() {
-    //   console.log('ok');
-    // }).catch(function() {
-    //   console.log('fail');
-    // })
+  $scope.setFileImage = function(file) {
+    $scope.fileImage = file[0];
   };
 
   console.log('Arquivo', $scope.arquivo);
@@ -76,13 +30,64 @@ angular.module('unitunesApp')
     });
   });
 
+  $scope.uploadFile = function(file) {
+    return $http({
+      method: 'POST',
+      url: 'http://localhost:3030',
+      headers: {
+          'Content-Type': undefined
+      },
+      data: {
+          upl: file
+      },
+      transformRequest: function (data, headersGetter) {
+          var formData = new FormData();
+          angular.forEach(data, function (value, key) {
+              formData.append(key, value);
+          });
+
+          // formData.append('upl', $scope.file);
+
+          var headers = headersGetter();
+          delete headers['Content-Type'];
+
+          return formData;
+      }
+    })
+  };
+
   $scope.addMidia = function() {
     //TODO: Fazer funcionar o upload de arquivos
     console.log($scope);
     console.log('Arquivo', $scope.arquivo);
-    $scope.midia.$save(function() {
-      console.log('midia', $scope.midia);
-      $state.go('midias');
+
+
+    $scope.uploadFile($scope.file).then(function(res) {
+      console.log('ok');
+      $scope.arquivo = new Arquivo({
+        nome: res.data.originalName,
+        path: res.data.path.split('/')[res.data.path.split('/').length - 1]
+      });
+      $scope.arquivo.$save(function(a) {
+        $scope.midia.arquivo = a;
+        $scope.uploadFile($scope.fileImage).then(function(r) {
+          $scope.imagem = new Arquivo({
+            nome: r.data.originalName,
+            path: r.data.path.split('/')[r.data.path.split('/').length - 1]
+          });
+
+          $scope.imagem.$save(function(i) {
+            $scope.midia.imagem = i;
+            $scope.midia.$save(function() {
+              console.log('midia', $scope.midia);
+              $state.go('midias');
+            });
+          })
+
+        })
+      });
+    }).catch(function() {
+      console.log('fail');
     });
   };
 })

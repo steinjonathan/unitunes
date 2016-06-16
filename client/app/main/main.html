@@ -33,13 +33,13 @@
 
         <div ng-if="midiaSelected == midia">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="{{midia.arquivo}}" frameborder="0"></iframe>
+            <iframe class="embed-responsive-item" src="{{filePath(midia.arquivo)}}" frameborder="0"></iframe>
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-4">
-            <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{midia.imagem || 'https://placehold.it/1280x720'}})"></div>
+            <div ng-hide="midiaSelected == midia" class="img-ratio" style="background-image: url({{filePath(midia.imagem) || 'https://placehold.it/1280x720'}})"></div>
           </div>
 
           <div class="col-sm-8">

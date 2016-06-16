@@ -20,7 +20,7 @@ let populateMidias = function() {
             autores: [autor._id],
             descricao: 'Coelho das drogas, me parece muito feliz.',
             imagem: '/assets/fake_uploads/mov_thumb.jpg',
-            arquivo: '/assets/fake_uploads/mov_bbb.mp4',
+            // arquivo: '/assets/fake_uploads/mov_bbb.mp4',
             preco: 4.20,
             ativo: true
           },{
@@ -30,7 +30,7 @@ let populateMidias = function() {
             autores: [autor._id],
             descricao: 'Get over here!!',
             imagem: '/assets/fake_uploads/podcast_thumb.jpg',
-            arquivo: '/assets/fake_uploads/podcast.mp3',
+            // arquivo: '/assets/fake_uploads/podcast.mp3',
             preco: 10.50,
             ativo: true
           },{
@@ -40,7 +40,7 @@ let populateMidias = function() {
             autores: [autor._id],
             descricao: '...I\'ve come to talk with you again.',
             imagem: '/assets/fake_uploads/book_thumb.jpg',
-            arquivo: '/assets/fake_uploads/book.pdf',
+            // arquivo: '/assets/fake_uploads/book.pdf',
             preco: 3,
             ativo: true
           },{
@@ -50,7 +50,7 @@ let populateMidias = function() {
             autores: [autor._id],
             descricao: "It's Friday, Friday / Gotta get down on Friday / Everybody's lookin' forward to the weekend, weekend / Friday, Friday.",
             imagem: '/assets/fake_uploads/music_thumb.jpg',
-            arquivo: '/assets/fake_uploads/music.mp3',
+            // arquivo: '/assets/fake_uploads/music.mp3',
             preco: 10.50,
             ativo: true
           })

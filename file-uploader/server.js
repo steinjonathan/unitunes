@@ -17,7 +17,21 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
-app.post('/', multer({ dest: './uploads/'}).single('upl'), function(req,res){
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/assets/images')
+  },
+  filename: function (req, file, cb) {
+		var mime = require('mime');
+		var crypto = require('crypto');
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+});
+var upload = multer({ storage: storage });
+
+app.post('/', upload.single('upl'), function(req,res){
 	console.log(req.body); //form fields
 	console.log(req.file); //form files
 	// console.log(req);
