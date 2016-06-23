@@ -162,9 +162,12 @@ exports.favoriteMidia = function(req, res, next) {
   User.findByIdAsync(userId)
     .then(function(user) {
       var index = user.midiasFavorites.indexOf(midia._id);
+      console.log(index);
 
       if (index > -1) {
-        user.midiasFavorites = user.midiasFavorites.splice(index, 1);
+        user.midiasFavorites = user.midiasFavorites.filter(function(m) {
+          return m !== midia._id;
+        })
       } else {
         user.midiasFavorites.push(midia._id);
       }
