@@ -22,5 +22,13 @@ angular.module('unitunesApp')
       'title': 'Adminstração',
       'state': 'admin',
       'roles': ['admin']
+    },{
+      'title': 'Albuns',
+      'state': 'albuns',
+      'roles': ['autor']
+    },{
+      'title': 'Compras',
+      'state': 'compras',
+      'roles': ['admin']
     });
   });

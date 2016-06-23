@@ -1,34 +1,30 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>sdasdasdasdasd Saldo</h1>
-    </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="creditMoney(form)" novalidate>
+  <div class="page-header">
+    <h1>
+      Albuns
 
-        <div class="form-group">
-          <h3><small>Saldo Atual:</small> R$ {{getCurrentUser().saldo || 0}}</h3>
-        </div>
-
-        <div class="form-group">
-          <label>Valor a creditar</label>
-
-          <input type="money" class="form-control" ng-model="valor"
-                 mongoose-error/>
-        </div>
-
-        <div class="form-group">
-          <label> Formas de pagamento</label>
-
-          <select ng-model="formaPgto" class="form-control" required>
-            <option ng-repeat="option in formasPagamento">{{option}}</option>
-          </select>
-        </div>
-
-        <p class="help-block"> {{ message }} </p>
-
-        <button class="btn btn-lg btn-primary" type="submit">Comprar créditos</button>
-      </form>
-    </div>
+      <a ui-sref="newAlbum" class="btn btn-primary pull-right">
+        Cadastrar Album
+      </a>
+    </h1>
   </div>
+
+  <table class="table table-bordered table-striped table-hovered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Quantidade de Midias</th>
+        <th width="1%">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="album in albuns">
+        <td>{{album.nome}}</td>
+        <td>{{album.quantidade}}</td>
+        <td class="text-nowrap">
+          <a class="btn btn-default btn-xs" ui-sref="editAlbum({id:album._id})">Editar</a>
+          <a class="btn btn-danger btn-xs"  ng-click="deleteAlbum(album)">Deletar</a>
+        </td>
+    </tbody>
+  </table>
 </div>

@@ -1,13 +1,21 @@
+/* global bootbox */
 'use strict';
 (function() {
 
-function MainController($scope, $http, Midia, Auth, Arquivo, User) {
+function MainController($state, $scope, $http, Midia, Auth, Arquivo, Compra, User) {
   $scope.filtros = {
     ativo: true
   };
 
   $scope.getCurrentUser = Auth.getCurrentUser;
   $scope.isRole = Auth.isRole;
+
+  // if($scope.getCurrentUser().role === 'admin') {
+  //   $state.go('compras');
+  // }
+
+  var currentRole = $scope.getCurrentUser().role
+  $scope.isSuperUser = currentRole === 'admin' || currentRole === 'autor';
 
   $scope.isPlaying = false;
 
@@ -19,7 +27,7 @@ function MainController($scope, $http, Midia, Auth, Arquivo, User) {
     .query(function(midias) {
       midias = midias.map(function(m) {
         m.autores = m.autores.map(function(a) {
-          return a.name
+          return a.name;
         }).join(',');
         return m;
       });
@@ -30,7 +38,16 @@ function MainController($scope, $http, Midia, Auth, Arquivo, User) {
     });
 
   $scope.filtrarByTipo = function(tipo) {
+    var currentUser = Auth.getCurrentUser();
     $scope.midias = $scope.midiasRawData;
+
+    if(tipo === 'Favoritos') {
+      $scope.midias = $scope.midias.filter(function(midia) {
+        return currentUser.midiasFavorites.indexOf(midia._id) !== -1;
+      });
+      $scope.filtros.tipo = tipo;
+      return;
+    }
 
     if(tipo === false) {
       delete $scope.filtros.tipo;
@@ -57,23 +74,48 @@ function MainController($scope, $http, Midia, Auth, Arquivo, User) {
 
   $scope.downloadMidia = function(midia) {
     return document.execCommand('SaveAs',true,midia.arquivo);
-  }
+  };
 
   $scope.comprarMidia = function(midia) {
-    bootbox.confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?', function(confirmed) {
-      if(!confirmed) return;
+    if(midia.preco) {
+      bootbox.confirm('Deseja realmente comprar esta mídia por R$ '+midia.preco+'?', function(confirmed) {
+        if(!confirmed) {
+          return;
+        }
 
-      var currentUser = Auth.getCurrentUser();
-      if(currentUser.saldo > midia.preco || midia.gratuita) {
-        User.addMidia({midia: midia}, function() {
-          Auth.updateCurrentUser();
-          bootbox.alert('Compra realizada com sucesso!');
-        });
-      } else {
-        bootbox.alert('Saldo insuficiente!');
-        return false;
-      }
-    });
+        var currentUser = Auth.getCurrentUser();
+        if(currentUser.saldo >= midia.preco || midia.gratuita) {
+          User.addMidia({midia: midia}, function() {
+            Auth.updateCurrentUser();
+
+            console.log(midia);
+            $scope.compra = new Compra();
+            $scope.compra.midia = midia;
+            $scope.compra.criacao = new Date();
+
+
+            User.get({ id: currentUser._id }, function(user) {
+              $scope.compra.user = currentUser;
+              console.log('asd', $scope.compra.user);
+              console.log($scope.compra);
+              $scope.compra.$save(function() {
+                console.log(`compra should be saved`);
+              })
+              bootbox.alert('Compra realizada com sucesso!');
+            });
+          });
+
+        } else {
+          bootbox.alert('Saldo insuficiente!');
+          return false;
+        }
+      });
+    } else {
+      User.addMidia({midia: midia}, function() {
+        Auth.updateCurrentUser();
+        // bootbox.alert('Midia realizada com sucesso!');
+      });
+    }
   };
 }
 

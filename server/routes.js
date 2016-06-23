@@ -13,6 +13,8 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/midia', require('./api/midia'));
   app.use('/api/arquivo', require('./api/arquivo'));
+  app.use('/api/album', require('./api/album'));
+  app.use('/api/compra', require('./api/compra'));
 
   app.use('/auth', require('./auth'));
 

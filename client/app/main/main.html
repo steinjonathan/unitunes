@@ -24,6 +24,10 @@
           ng-class="{active: filtros.tipo == 'Livro'}">
           Livros
         </a>
+        <a ng-click="filtrarByTipo('Favoritos')" class="btn btn-default"
+          ng-class="{active: filtros.tipo == 'Favoritos'}">
+          Favoritas
+        </a>
       </div>
     </h1>
   </div>
@@ -60,14 +64,14 @@
                 </dl>
               </small>
               <p>
-                <a ng-click="playMidia(midia)" class="btn btn-default" role="button">Visualizar</a>
+                <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1 || !midia.preco || isSuperUser" ng-click="playMidia(midia)" class="btn btn-default" role="button">Visualizar</a>
                 <a ng-click="favoritarMidia(midia)" class="btn btn-warning">
                   <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) !== -1" class="glyphicon glyphicon-star"></i>
                   <i ng-show="getCurrentUser().midiasFavorites.indexOf(midia._id) === -1" class="glyphicon glyphicon-star-empty"></i>
                 </a>
-                <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1"
+                <a ng-show="getCurrentUser().midias.indexOf(midia._id) === -1 && midia.preco && !isSuperUser"
                   ng-click="comprarMidia(midia)" class="btn btn-primary pull-right">Comprar</a>
-                <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1"
+                <a ng-show="getCurrentUser().midias.indexOf(midia._id) !== -1 || !midia.preco || isSuperUser"
                   target="_self" href="{{filePath(midia.arquivo)}}" class="btn btn-primary pull-right" download="{{midia.arquivo.nome}}">Baixar</a>
               </p>
             </div>
