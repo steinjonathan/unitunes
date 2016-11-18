@@ -67,6 +67,10 @@ function MainController($state, $scope, $http, Midia, Auth, Arquivo, Compra, Use
     });
   };
 
+  $scope.formatarData = function(date) {
+    return (date.getDate()) + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear();
+  }
+
   $scope.playMidia = function(midia) {
     $scope.isPlaying = true;
     $scope.midiaSelected = midia;
