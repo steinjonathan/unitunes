@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Editando Album
+      <small>"{{album.nome}}"</small>
+    </h1>
+  </div>
+
+  <form class="form-horizontal" role="form" ng-submit="updateAlbum()">
+    <div ng-include="'app/albuns/albuns._form.html'"></div>
+  </form>
+</div>

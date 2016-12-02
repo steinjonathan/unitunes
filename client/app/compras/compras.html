@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Compras
+    </h1>
+  </div>
+
+  <table class="table table-bordered table-striped table-hovered">
+    <thead>
+      <tr>
+        <th>Comprador</th>
+        <th>Mídia</th>
+        <th>Valor</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="compra in compras">
+        <td>{{compra.comprador}}</td>
+        <td>{{compra.midia}}</td>
+        <td>R$ {{compra.valor}}</td>
+        <td>{{compra.data}}</td>
+    </tbody>
+  </table>
+</div>

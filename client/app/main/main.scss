@@ -1,3 +1,5 @@
+@import '../../bower_components/bootswatch/paper/_variables.scss';
+
 .thing-form {
   margin: 20px 0;
 }
@@ -19,9 +21,24 @@
   color: #F5F5F5;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
+  background: $brand-primary;
 }
 
 .navbar-text {
   margin-left: 15px;
+}
+
+.navbar-brand {
+  // display: none; // REMOVER
+  color: #FFF !important;
+  background-color: #EB6864;
+  &:hover, &:focus {
+    background-color: darken(#EB6864, 10%) !important;
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #2196F3 !important;
+  border-color: transparent;
 }

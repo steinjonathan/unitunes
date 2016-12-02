@@ -19,7 +19,9 @@
      if(err) { return handleError(res, err); }
      return res.json(200, midias);
    })
-   .populate('autores');
+   .populate('autores')
+   .populate('arquivo')
+   .populate('imagem');
  };
 
  // Get a single midia

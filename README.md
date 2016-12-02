@@ -25,7 +25,9 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
-4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
+4. Run `node file-upload/server.js` in a separate shell to keep an instance of the upload server running
+
+5. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
 
 ## Build & development
 

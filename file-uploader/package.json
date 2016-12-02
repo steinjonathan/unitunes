@@ -1,0 +1,23 @@
+{
+  "name": "file-uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "connect-busboy": "0.0.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "fs-extra": "^0.30.0",
+    "jade": "^1.11.0",
+    "mime": "^1.3.4",
+    "multer": "^1.1.0"
+  }
+}

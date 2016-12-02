@@ -1,8 +1,10 @@
+@import '../bower_components/bootswatch/paper/_variables.scss';
 $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
-@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
-@import '../bower_components/bootstrap-social/bootstrap-social.scss';
+@import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
+
+@import '../bower_components/bootswatch/paper/_bootswatch.scss';
 
 /**
  * App-wide Styles
@@ -32,6 +34,14 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
   background-size: contain;
 }
 
+input {
+  background-color: #fbfbfb !important;
+  transition: all 5.5s;
+  &:focus {
+    background-color: #fff !important;
+  }
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin.scss';
@@ -41,4 +51,4 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/footer/footer.scss';
 @import '../components/modal/modal.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';
-// endinjector
+// end

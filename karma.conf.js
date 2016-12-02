@@ -21,6 +21,9 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
+      'client/bower_components/ng-file-upload/ng-file-upload.js',
+      'client/bower_components/bootbox.js/bootbox.js',
+      'client/bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

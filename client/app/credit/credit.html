@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Creditar Saldo</h1>
+      <h1>Albuns</h1>
     </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="creditMoney(form)" novalidate>
@@ -19,10 +19,10 @@
 
         <div class="form-group">
           <label> Formas de pagamento</label>
-  
+
           <select ng-model="formaPgto" class="form-control" required>
             <option ng-repeat="option in formasPagamento">{{option}}</option>
-          </select>        
+          </select>
         </div>
 
         <p class="help-block"> {{ message }} </p>

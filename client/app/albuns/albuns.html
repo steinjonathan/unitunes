@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Albuns
+
+      <a ui-sref="newAlbum" class="btn btn-primary pull-right">
+        Cadastrar Album
+      </a>
+    </h1>
+  </div>
+
+  <table class="table table-bordered table-striped table-hovered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Quantidade de Midias</th>
+        <th width="1%">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="album in albuns">
+        <td>{{album.nome}}</td>
+        <td>{{album.quantidade}}</td>
+        <td class="text-nowrap">
+          <a class="btn btn-default btn-xs" ui-sref="editAlbum({id:album._id})">Editar</a>
+          <a class="btn btn-danger btn-xs"  ng-click="deleteAlbum(album)">Deletar</a>
+        </td>
+    </tbody>
+  </table>
+</div>
